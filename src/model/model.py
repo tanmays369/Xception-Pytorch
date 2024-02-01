@@ -32,3 +32,23 @@ class Xception(nn.Sequential):
 
     def forward(self, inputs):
         return super(Xception, self).forward(inputs)
+
+config_71 = {
+    "in_ch": 3,
+    "n_classes": 10, 
+    "channels": [32, 64, 128, 256, 728, 728, 728],
+    "strides": [1, 2, 1, 2, 1, 2,1],
+}
+
+config_56 = {
+    "in_ch": 3,
+    "n_classes": 10,
+    "channels": [32, 64, 128, 256, 728],
+    "strides": [1, 2, 1, 2]
+}
+
+model_71 = Xception("71", config_71, classify=True)
+model_56 = Xception("56", config_56, classify=True)
+
+print(model_71(torch.randn(1, 3, 224, 224)).shape)
+print(model_56(torch.randn(1, 3, 224, 224)).shape)
